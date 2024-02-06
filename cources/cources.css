@@ -6,10 +6,6 @@
 /* Общие стили */
 body {
     margin:  0;
-        font-family: 'Poppins', sans-serif;
-}
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Libre Baskerville', serif;
 }
 .main {
     position: relative;
@@ -80,13 +76,12 @@ h1, h2, h3, h4, h5, h6 {
     line-height:  30px;
     letter-spacing:  0em;
     text-align: left;
+    color: #070707;
     background-color: transparent; /* Set background to transparent */
 }
 
 /* Стили для welcome текста */
 .welcome {
-    font: Libre Baskerville;
-    font-style: italic;
     margin-top: 10%;
     display: flex; /* Используем Flexbox для вертикального выравнивания */
     flex-direction: column; /* Элементы располагаются в колонку */
@@ -96,12 +91,20 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
     width:  100%; /* Занимает всю ширину родителя */
     height:  100%; /* Занимает всю высоту родителя */
+    font-family: Libre Baskerville;
+    font-size: 22px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 55px;
+    letter-spacing: 0em;
+    text-align: center;
+
 }
 
 
 .welcome h1 {
-    font-style: italic;
-font-family: 'Libre Baskerville';
+   
+    font-family: 'Libre Baskerville', serif;
     font-size:  2em;
     margin:  0;
 }
@@ -142,39 +145,49 @@ font-family: 'Libre Baskerville';
 .language-list {
     list-style-type: none;
     padding:   0;
-    margin:   0;
+    margin:   20px;
     display: flex;
     justify-content: space-around; /* Распределение элементов равномерно по горизонтали */
     width:  100%; /* Ширина списка равна ширине родительского блока */
 }
-
+.language-list li span.flag {
+    margin-right:   10px; /* Добавляем отступ справа от флага */
+    margin-top: 17px;
+}
 .language-list li {
     margin:   0  20px; /* Отступы слева и справа от каждого элемента списка */
     font-size:   1.2em;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
 }
 .flag {
     display: inline-block;
-    width:  20px;
-    height:  20px;
+    width:  40px;
+    height:  40px;
     margin-left:  5px;
     background-repeat: no-repeat;
     background-size: contain;
+    top: 1005px;
+    left: 700px;
+    padding: 20px;
+
 }
 
 .flag.german {
-    background-image: url('../Assets/German.png');
+    background-image: url('..//Assets/German.svg');
 }
 
 .flag.english {
-    background-image: url('../Assets/england.webp');
+    background-image: url('../Assets//english.svg');
 }
 
 .flag.russian {
-    background-image: url('../Assets/russian.png');
+    background-image: url('../Assets/russian.svg');
 }
 
 .flag.polish {
-    background-image: url('..//Assets/polish.png');
+    background-image: url('..//Assets/polish.svg');
 }
 
 
@@ -238,23 +251,28 @@ font-family: 'Libre Baskerville';
         padding: 10px;
     }
 /* Стили для мобильных устройств */
-@media screen and (max-width:  768px) {
+@media screen and (max-width:  1024px) {
     .navbar {
         flex-direction: column;
     }
 
     .navbar-menu {
+        flex-direction:row;
         flex-wrap: wrap;
+        
     }
 
     .navbar-menu li {
-        width:  100%;
-        margin-bottom:  10px;
+        padding:  10px; /* Уменьшаем внутренние отступы */
+        margin-bottom:  5px; /* Уменьшаем нижний отступ */
+        flex-direction:row;
     }
 
-    .auth-buttons {
-        flex-direction: column;
-        align-items: stretch;
+    .auth-buttons button {
+        padding:  10px  15px; /* Увеличиваем внутренние отступы */
+        font-size:  16px; /* Уменьшаем размер шрифта */
+        background-color: #f0f0f0; /* Изменяем цвет фона */
+        border:  1px solid #ccc; /* Добавляем границу */
     }
 
     .get-started {
@@ -262,15 +280,8 @@ font-family: 'Libre Baskerville';
         margin:  20px  0;
     }
 
-    .language-selection {
-        flex-direction: column;
-    }
-
-    .language-list {
-        flex-direction: column;
-    }
-
     .language-list li {
+        
         margin-bottom:  10px;
     }
 
@@ -278,39 +289,26 @@ font-family: 'Libre Baskerville';
         flex-direction: column;
     }
 }
-
-/* Стили для планшетов */
-@media screen and (min-width:  769px) and (max-width:  1024px) {
-    .navbar-menu li {
-        width:  50%;
-    }
-
+/* Стили для меньших экранов */
+@media screen and (max-width:  768px) {
     .mini-blocks-container {
-        flex-wrap: wrap;
+        display: flex;
+        flex-direction: column;
+        gap:  20px;
     }
-
     .mini-block {
-        width: calc(50% -  20px);
-        margin-bottom:  20px;
+        width:  100%; /* Делаем каждый мини-блок занимать всю ширину контейнера */
+        margin-bottom:  40px; /* Добавляем отступ снизу для разделения блоков */
+    }
+    .navbar-menu {
+        flex-direction: row;
     }
 }
-
-/* Стили для десктопов */
-@media screen and (min-width:  1025px) {
-    .navbar-menu li {
-        width: auto;
+    .flag {
+        width:  16px; /* Уменьшенная ширина флага */
+        height:  16px; /* Уменьшенная высота флага */
     }
-
-    .mini-blocks-container {
-        flex-wrap: nowrap;
+    .language-list li span {
+        font-size:  12px; /* Уменьшенный размер шрифта текста */
+        margin-top: -4px; /* Корректировка вертикального положения текста */
     }
-
-    .mini-block {
-        width: calc(33.33% -  20px);
-        margin-right:  20px;
-    }
-
-    .mini-block:last-child {
-        margin-right:  0;
-    }
-}
