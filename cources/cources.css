@@ -9,6 +9,7 @@ body {
 }
 .main {
     position: relative;
+    width :100%;
     justify-content: center;
     align-items: center;
     background-image: url('..//Assets/background.svg');
@@ -56,6 +57,9 @@ body {
     width: 150px;
     text-decoration: none;
     color: #333;
+}
+.navbar-menu li.teachers {
+    margin-right:  200px; /* Добавляем отступ справа от элемента "Teachers" */
 }
 
 .auth-buttons {
@@ -191,11 +195,11 @@ body {
 }
 
 
-/* Стили для контейнера миниблоков */
 .mini-blocks-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center; /* Выравнивание блоков по центру */
     align-items: center;
+    width:  100%; /* Занимает всю ширину родительского элемента */
     margin-top:   50px; /* Отступ сверху для разделения блоков */
 }
 
@@ -210,8 +214,8 @@ body {
     align-items: center;
     padding:   20px;
     box-shadow:   0   4px   6px rgba(0,   0,   0,   0.1); /* Добавляем тень для визуального отделения */
+    margin-right:   50px; /* Уменьшаем отступ справа между блоками */
 }
-
 /* Стили для логотипа в миниблоках */
 .mini-block-logo {
     width:   60px;
@@ -250,20 +254,58 @@ body {
         margin-bottom:  20px;
         padding: 10px;
     }
+
+    .footer {
+        background-color: #1C3064;
+        width:   100%;
+        height:   240px;
+        display: flex;
+        flex-direction: column; /* Вертикальное расположение элементов */
+        align-items: center; /* Горизонтальное выравнивание элементов */
+        padding: 0px; /* Уменьшенные горизонтальные отступы */
+        margin-top:   50px; /* Отступ сверху для разделения блоков */
+        position: relative; /* Добавляем относительное позиционирование для футера */
+    }
+    
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width:   100%;
+        max-width:   1440px; /* Устанавливаем максимальную ширину для футера */
+    }
+    
+    .footer-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .footer-text {
+        font-family: 'Poppins', sans-serif;
+        font-weight:   400;
+        font-size:   20px;
+        line-height:   30px;
+        color: #FFFFFF;
+        text-align: center;
+    }
+    
 /* Стили для мобильных устройств */
 @media screen and (max-width:  1024px) {
     .navbar {
         flex-direction: column;
+        justify-content: center;
     }
 
     .navbar-menu {
         flex-direction:row;
         flex-wrap: wrap;
+        justify-content: center;
         
     }
 
     .navbar-menu li {
-        padding:  10px; /* Уменьшаем внутренние отступы */
+        padding:  20px; /* Уменьшаем внутренние отступы */
         margin-bottom:  5px; /* Уменьшаем нижний отступ */
         flex-direction:row;
     }
@@ -278,6 +320,7 @@ body {
     .get-started {
         width:  100%;
         margin:  20px  0;
+        background: transparent;
     }
 
     .language-list li {
@@ -289,7 +332,7 @@ body {
         flex-direction: column;
     }
 }
-/* Стили для меньших экранов */
+
 @media screen and (max-width:  768px) {
     .mini-blocks-container {
         display: flex;
@@ -303,12 +346,24 @@ body {
     .navbar-menu {
         flex-direction: row;
     }
-}
+    .language-list {
+        flex-direction: column; /* Располагаем элементы списка в колонку */
+        align-items: stretch; /* Расширяем элементы, чтобы они занимали всю ширину */
+    }
+    
+    .language-list li {
+        font-size:   1.2em; /* Уменьшаем размер шрифта текста */
+        margin-bottom:   10px; /* Уменьшаем отступ снизу */
+    }
+    
     .flag {
-        width:  16px; /* Уменьшенная ширина флага */
-        height:  16px; /* Уменьшенная высота флага */
+        width:   40px; /* Уменьшаем ширину флага */
+        height:   40px; /* Уменьшаем высоту флага */
+        margin-right:   5px; /* Уменьшаем отступ справа от флага */
     }
-    .language-list li span {
-        font-size:  12px; /* Уменьшенный размер шрифта текста */
-        margin-top: -4px; /* Корректировка вертикального положения текста */
+    .logo-container {
+        justify-content: center;
     }
+}
+
+
