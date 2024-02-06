@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+@font-face {
+    font-family: 'Libre Baskerville';
+    src: url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap') format('woff2');
+}
 /* Общие стили */
 body {
     margin:  0;
-    font-family: 'Libre Baskerville', 'Poppins';
+        font-family: 'Poppins', sans-serif;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Libre Baskerville', serif;
 }
 .main {
     position: relative;
@@ -18,13 +26,10 @@ body {
 .logo-container {
     margin-left:140px;
     margin-top: 40px;
+    height:  66px; /* Высота логотипа */
+    Width: 259px;
     float: right;
 }
-
-.logo {
-    height:  66px; /* Высота логотипа */
-}
-
 /* Стили для навигационной панели */
 .navbar {
     padding:  10px  20px;
@@ -41,34 +46,41 @@ body {
 }
 
 .navbar-menu li {
-    font-family: Poppins;
-    width: 150px;
-    padding: 20px;
-    height: 0px;
+    font-family: 'Poppins', sans-serif;
+    font-weight:  400;
+    font-size:  20px;
+    line-height:  30px;
+    padding:  40px;
+    height:  0px;
     margin-left:  20px;
 }
 
 .navbar-menu a {
+    font-family: Poppins;
     width: 150px;
     text-decoration: none;
     color: #333;
 }
 
-/* Стили для кнопок входа и регистрации */
 .auth-buttons {
     display: flex;
-    gap:  10px;
+    gap:   10px;
+    background-color: none;
+    margin-top:   20px; /* Adjust this value to position the buttons lower */
+    margin-left: -10px; /* Adjust this value to position the buttons to the left */
 }
+
 
 .login, .signup {
     border: none;
-    background-color: #007bff;
-    padding:  5px  10px;
+    padding:   5px   10px;
     cursor: pointer;
-}
-
-.login:hover, .signup:hover {
-    background-color: #0056b3;
+    font-size:  20px;
+    font-weight:  400;
+    line-height:  30px;
+    letter-spacing:  0em;
+    text-align: left;
+    background-color: transparent; /* Set background to transparent */
 }
 
 /* Стили для welcome текста */
@@ -88,6 +100,8 @@ body {
 
 
 .welcome h1 {
+    font-style: italic;
+font-family: 'Libre Baskerville';
     font-size:  2em;
     margin:  0;
 }
@@ -224,61 +238,79 @@ body {
         padding: 10px;
     }
 /* Стили для мобильных устройств */
-@media screen and (max-width:   768px) {
+@media screen and (max-width:  768px) {
     .navbar {
         flex-direction: column;
-        align-items: stretch;
     }
 
     .navbar-menu {
         flex-wrap: wrap;
-        justify-content: space-around;
     }
 
     .navbar-menu li {
-        width:   100%;
-        margin-bottom:   10px;
+        width:  100%;
+        margin-bottom:  10px;
     }
 
     .auth-buttons {
-        flex-direction: column;
-        gap:   10px;
-        width:  100%;
-        justify-content: center;
-    }
-
-    .welcome {
         flex-direction: column;
         align-items: stretch;
     }
 
     .get-started {
-        width:   100%;
-        margin:   20px auto;
+        width:  100%;
+        margin:  20px  0;
     }
 
     .language-selection {
         flex-direction: column;
-        align-items: stretch;
     }
 
     .language-list {
         flex-direction: column;
-        align-items: stretch;
     }
 
     .language-list li {
-        width:   100%;
-        margin-bottom:   10px;
+        margin-bottom:  10px;
     }
 
     .mini-blocks-container {
         flex-direction: column;
-        align-items: stretch;
+    }
+}
+
+/* Стили для планшетов */
+@media screen and (min-width:  769px) and (max-width:  1024px) {
+    .navbar-menu li {
+        width:  50%;
+    }
+
+    .mini-blocks-container {
+        flex-wrap: wrap;
     }
 
     .mini-block {
-        width:   100%;
-        margin-bottom:   20px;
+        width: calc(50% -  20px);
+        margin-bottom:  20px;
+    }
+}
+
+/* Стили для десктопов */
+@media screen and (min-width:  1025px) {
+    .navbar-menu li {
+        width: auto;
+    }
+
+    .mini-blocks-container {
+        flex-wrap: nowrap;
+    }
+
+    .mini-block {
+        width: calc(33.33% -  20px);
+        margin-right:  20px;
+    }
+
+    .mini-block:last-child {
+        margin-right:  0;
     }
 }
