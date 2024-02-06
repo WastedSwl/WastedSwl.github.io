@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css?family=Raleway:300,500,600');
+
+* {
+  margin:  0;
+  padding:  0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width:  100%;
+  height:  100%;
+}
+
+body {
+  background: #3a6186;
+  background: -webkit-linear-gradient(left, #89253e, #3a6186);
+  background: -o-linear-gradient(left, #89253e, #3a6186);
+  background: linear-gradient(to left, #89253e, #3a6186);
+  font-family: 'Raleway', sans-serif;
+}
+
+.form-container {
+  position: absolute;
+  margin: auto;
+  top:  0;
+  right:  0;
+  bottom:  0;
+  left:  0;
+  width:  300px;
+  height:  550px;
+  box-shadow:  1px  1px  25px rgba(0,  0,  0,  0.2);
+  border-radius:  5px;
+  overflow: hidden;
+}
+
+.form-container span.arrow {
+  position: absolute;
+  margin: auto;
+  top:  5px;
+  right: initial;
+  bottom: initial;
+  left: -30px;
+  width:  10px;
+  height:  10px;
+  color: lightblue;
+  z-index:  5;
+  opacity:  1;
+  transition: left  2s;
+}
+
+.form-container span.arrow:hover {
+  cursor: pointer;
+}
+
+.form-container img {
+  position: absolute;
+  top: initial;
+  right: initial;
+  bottom: initial;
+  left: initial;
+  width:  100%;
+  height:  100%;
+  object-fit: cover;
+  filter: grayscale(50%);
+  opacity:  0.2;
+  z-index: -1;
+}
+
+.form-container .overlay {
+  position: absolute;
+  margin: auto;
+  top: initial;
+  right: initial;
+  bottom: initial;
+  left: initial;
+  width: inherit;
+  height: inherit;
+  background: rgba(214,  214,  214,  0.1);
+  z-index: -1;
+  transition: opacity  1s;
+}
+
+.form-container .choose-form {
+  position: absolute;
+  margin: auto;
+  top: initial;
+  right: initial;
+  bottom: initial;
+  left: initial;
+  width: inherit;
+  height: inherit;
+  z-index:  4;
+}
+
+.form-container .choose-form .logo {
+  position: absolute;
+  margin: auto;
+  top: -100px;
+  right:  0;
+  bottom: initial;
+  left: initial;
+  width: inherit;
+  height:  100px;
+  text-align: center;
+  color: white;
+  transition: right  2s;
+}
+
+.form-container .choose-form .logo i {
+  font-size:  30px;
+}
+
+.form-container .choose-form .logo h1 {
+  font-weight:  300;
+}
+
+.form-container .choose-form .logo h1 span.bold {
+  font-weight:  600;
+}
+
+.form-container .choose-form .buttons {
+  text-align: center;
+  margin: auto;
+  top:  200px;
+  right:  0;
+  bottom: initial;
+  left:  0;
+  width: inherit;
+  height:  100px;
+}
+
+.form-container .choose-form .buttons a {
+  text-align: inherit;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing:  0.1em;
+  font-size:  12px;
+  font-weight:  500;
+  color: white;
+}
+
+.form-container .choose-form .buttons a:hover {
+  background: white;
+  color: lightblue;
+  border:  1px solid lightblue;
+}
+
+.form-container .choose-form .buttons .button-login {
+  position: absolute;
+  margin: auto;
+  top:  40px;
+  right:  0;
+  bottom: initial;
+  left:  0;
+  width:  200px;
+  height:  30px;
+  transition: right  2s;
+  transition-delay: .8s;
+}
+
+.form-container .choose-form .buttons .button-signup {
+  position: absolute;
+  margin: auto;
+  top: -40px;
+  right:  0;
+  bottom: initial;
+  left:  0;
+  width:  200px;
+  height:  30px;
+  transition: right  2s;
+  transition-delay: .5s;
+}
+
+.form-container .login-form {
+  opacity:  0;
+  transition: opacity  2s;
+}
+
+.form-container .register-form {
+  opacity:  0;
+  transition: opacity  2s;
+}
+
+.form-container .form {
+  position: absolute;
+  margin: auto;
+  top:  0;
+  right:  0;
+  bottom:  0;
+  left:  0;
+  width: inherit;
+  height:  400px;
+  text-align: center;
+}
+
+.form-container .form .form-wrapper {
+  width:  250px;
+  height:  200px;
+  margin:  0 auto;
+  display: block;
+}
+
+.form-container .form .form-wrapper label {
+  display: block;
+  text-align: left;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing:  0.1em;
+  font-size:  12px;
+  font-weight:  600;
+  color: lightblue;
+}
+
+.form-container .form .form-wrapper input {
+  width:  250px;
+  height:  30px;
+  margin:  5px  0  10px  0;
+  outline: none;
+  border: none;
+  background: none;
+  border-bottom:  1px solid lightblue;
+  font-size:  12px;
+  color: lightblue;
+}
+
+.form-container .form .form-wrapper input::placeholder {
+  color: rgba(19,  28,  36,  0.5);
+  opacity:  1;
+}
+
+.form-container .form .form-wrapper a.forgot-password {
+  display: block;
+  text-align: right;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing:  0.1em;
+  font-size:  12px;
+  font-weight:  500;
+  color: lightblue;
+}
+
+.form-container .form .form-wrapper a.forgot-password:hover {
+  opacity:  0.5;
+}
+
+.form-container .form .form-wrapper button.button-submit {
+  text-align: center;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing:  0.1em;
+  font-size:  12px;
+  font-weight:  500;
+  color: white;
+  background: none;
+  outline: none;
+}
+
+.form-container .form .form-wrapper button.button-submit:hover {
+  background: white;
+  color: lightblue;
+  border:  1px solid lightblue;
+  cursor: pointer;
+}
+
+.form-container .form .form-wrapper .social-media {
+  position: absolute;
+  margin: auto;
+  top: initial;
+  right:  0;
+  bottom: initial;
+  left:  0;
+  width: inherit;
+  height: initial;
+}
+
+.form-container .form .form-wrapper .social-media h6 {
+  text-transform: uppercase;
+  color: lightblue;
+}
+
+.form-container .form .form-wrapper .social-media h6::before {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top:  6px;
+  right: initial;
+  bottom:  0;
+  left:  0;
+  width:  65px;
+  height: initial;
+  border-top:  1px solid lightblue;
+}
+
+.form-container .form .form-wrapper .social-media h6::after {
+  content: "";
+  position: absolute;
+  margin: auto;
+  top:  6px;
+  right:  0;
+  bottom: initial;
+  left: initial;
+  width:  65px;
+  height: initial;
+  border-top:  1px solid lightblue;
+}
+
+.form-container .form .form-wrapper .social-media .button-facebook {
+  border: none;
+  background: rgb(59,  89,  152);
+  text-align: center;
+  text-transform: initial;
+  text-decoration: none;
+  letter-spacing: initial;
+  font-size:  12px;
+  font-weight:  600;
+  color: white;
+  opacity:  0.8;
+}
+
+.form-container .form .form-wrapper .social-media .button-facebook:hover {
+  opacity:  1;
+}
+
+.form-container .form .form-wrapper .social-media .button-google {
+  border: none;
+  background: rgb(219,  50,  54);
+  text-align: center;
+  text-transform: initial;
+  text-decoration: none;
+  letter-spacing: initial;
+  font-size:  12px;
+  font-weight:  600;
+  color: white;
+  opacity:  0.8;
+}
+
+.form-container .form .form-wrapper .social-media .button-google:hover {
+  opacity:  1;
+}
+
+.button {
+  margin:  10px auto;
+  padding:  7px  0;
+  border-radius:  10px;
+  border:  1px solid white;
+  width:  200px;
+  height:  30px;
+  display: block;
+  outline: none;
+}
