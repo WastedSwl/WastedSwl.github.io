@@ -1,0 +1,223 @@
+/* Общие стили */
+body {
+    margin:  0;
+    font-family: 'Libre Baskerville', 'Poppins';
+}
+.main {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    background-image: url('background.svg');
+    background-size: cover;
+    background-position: center;
+    min-height:  100vh; /* Минимальная высота блока равна высоте окна просмотра */
+}
+
+
+/* Стили для логотипа */
+.logo-container {
+    margin-top: 20px;
+    float: right;
+}
+
+.logo {
+    height:  66px; /* Высота логотипа */
+}
+
+/* Стили для навигационной панели */
+.navbar {
+    padding:  10px  20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navbar-menu {
+    list-style-type: none;
+    margin:  0;
+    padding:  0;
+    display: flex;
+}
+
+.navbar-menu li {
+    font-family: Poppins;
+    width: 82px;
+    padding: 20px;
+    height: 20px;
+    margin-left:  20px;
+}
+
+.navbar-menu a {
+    text-decoration: none;
+    color: #333;
+}
+
+/* Стили для кнопок входа и регистрации */
+.auth-buttons {
+    display: flex;
+    gap:  10px;
+}
+
+.login, .signup {
+    border: none;
+    background-color: #007bff;
+    padding:  5px  10px;
+    cursor: pointer;
+}
+
+.login:hover, .signup:hover {
+    background-color: #0056b3;
+}
+
+/* Стили для welcome текста */
+.welcome {
+    font: Libre Baskerville;
+    font-style: italic;
+    margin-top: 10%;
+    display: flex; /* Используем Flexbox для вертикального выравнивания */
+    flex-direction: column; /* Элементы располагаются в колонку */
+    justify-content: center; /* Центрирование элементов по вертикали */
+    align-items: center; /* Центрирование элементов по горизонтали */
+    color: black;
+    text-align: center;
+    width:  100%; /* Занимает всю ширину родителя */
+    height:  100%; /* Занимает всю высоту родителя */
+}
+
+
+.welcome h1 {
+    font-size:  2em;
+    margin:  0;
+}
+
+/* Стили для кнопки Get Started */
+.get-started {
+    display: block; /* Блочное отображение */
+    margin:   20px auto; /* Отступы сверху и снизу, автоматические слева и справа */
+    padding:   10px  20px; /* Внутренние отступы */
+    background-color: #1C3064; /* Синий фон */
+    color: white; /* Белый текст */
+    border: none; /* Без границы */
+    border-radius:  20px; /* Скругление углов */
+    font-size:  1.2em; /* Размер шрифта */
+    cursor: pointer; /* Изменение курсора при наведении */
+    transition: background-color  0.3s ease; /* Плавный переход цвета фона */
+}
+
+.get-started:hover {
+    background-color: #0056b3; /* Темнее синее при наведении */
+}
+
+/* Стили для блока выбора языка */
+.language-selection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top:  100px; /* Отступ сверху для разделения блоков */
+}
+
+.language-selection h2 {
+    font-size:  2em;
+    margin-bottom:  20px;
+    padding: 10px;
+}
+
+.language-list {
+    list-style-type: none;
+    padding:   0;
+    margin:   0;
+    display: flex;
+    justify-content: space-around; /* Распределение элементов равномерно по горизонтали */
+    width:  100%; /* Ширина списка равна ширине родительского блока */
+}
+
+.language-list li {
+    margin:   0  20px; /* Отступы слева и справа от каждого элемента списка */
+    font-size:   1.2em;
+}
+.flag {
+    display: inline-block;
+    width:  20px;
+    height:  20px;
+    margin-left:  5px;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.flag.german {
+    background-image: url('../Assets/German.png');
+}
+
+.flag.english {
+    background-image: url('../Assets/england.webp');
+}
+
+.flag.russian {
+    background-image: url('../Assets/russian.png');
+}
+
+.flag.polish {
+    background-image: url('..//Assets/polish.png');
+}
+
+
+/* Стили для контейнера миниблоков */
+.mini-blocks-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top:   50px; /* Отступ сверху для разделения блоков */
+}
+
+/* Стили для миниблоков */
+.mini-block {
+    width:   400px;
+    height:   450px;
+    background-color: #F2F2F2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:   20px;
+    box-shadow:   0   4px   6px rgba(0,   0,   0,   0.1); /* Добавляем тень для визуального отделения */
+}
+
+/* Стили для логотипа в миниблоках */
+.mini-block-logo {
+    width:   60px;
+    height:   60px;
+}
+
+/* Стили для заголовка в миниблоках */
+.mini-block-title {
+    font-family: 'Poppins', sans-serif;
+    font-weight:   500;
+    font-size:   26px;
+    line-height:   39px;
+    text-align: center;
+    margin-bottom:   20px;
+}
+
+/* Стили для основного текста в миниблоках */
+.mini-block-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight:   400;
+    font-size:   24px;
+    line-height:   36px;
+    text-align: center;
+}
+
+.Language-Business-Channel{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top:  100px; /* Отступ сверху для разделения блоков */
+    }
+    
+.Language-Business-Channel h2 {
+        font-size:  2em;
+        margin-bottom:  20px;
+        padding: 10px;
+    }
