@@ -5,7 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
         anime({
             targets: welcomeTextElement,
             opacity: [0,   1],
-            duration:   500, // Длительность анимации   0.5 секунды
+            duration:   3500, // Длительность анимации   0.5 секунды
             easing: 'linear' // Линейная скорость анимации
         });
     }
@@ -34,7 +34,7 @@ function animateOnScroll() {
             targets: exclusiveTitleElement,
             translateX: ['100%', '0'],
             opacity: [0,   1],
-            duration:   1000,
+            duration:   3000,
             easing: 'easeOutExpo',
             complete: function() {
                 exclusiveTitleElement.classList.add('animated');
