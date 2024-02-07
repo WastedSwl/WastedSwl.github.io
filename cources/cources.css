@@ -318,9 +318,9 @@ body {
     }
 
     .get-started {
-        width:  100%;
+        width: 100%;
         margin:  20px  0;
-        background: transparent;
+        align-items: center;
     }
 
     .language-list li {
@@ -347,7 +347,7 @@ body {
         flex-direction: row;
     }
     .language-list {
-        flex-direction: column; /* Располагаем элементы списка в колонку */
+        flex-direction: row; /* Располагаем элементы списка в колонку */
         align-items: stretch; /* Расширяем элементы, чтобы они занимали всю ширину */
     }
     

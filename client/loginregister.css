@@ -1,350 +1,312 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,500,600');
+/* General variables */
+:root {
+  --bdrds:  3px;
+  --white: #fff;
+  --black: #000;
+  --gray: #ccc;
+  --salmon: #e8716d;
+  --smoky-black: rgba(34,  34,  34,  0.85);
+  --ff: 'Montserrat', sans-serif;
+  --ff-body:  12px;
+  --ff-light:  300;
+  --ff-regular:  400;
+  --ff-medium:  500;
+}
 
-* {
-  margin:  0;
-  padding:  0;
+/* General configs */
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
-html, body {
-  width:  100%;
-  height:  100%;
-}
-
 body {
-  background: #3a6186;
-  background: -webkit-linear-gradient(left, #89253e, #3a6186);
-  background: -o-linear-gradient(left, #89253e, #3a6186);
-  background: linear-gradient(to left, #89253e, #3a6186);
-  font-family: 'Raleway', sans-serif;
+  font-family: var(--ff);
+  font-size: var(--ff-body);
+  line-height:  1em;
+  background-color: none;
 }
 
-.form-container {
-  position: absolute;
-  margin: auto;
-  top:  0;
-  right:  0;
-  bottom:  0;
-  left:  0;
-  width:  300px;
-  height:  550px;
-  box-shadow:  1px  1px  25px rgba(0,  0,  0,  0.2);
-  border-radius:  5px;
-  overflow: hidden;
-}
-
-.form-container span.arrow {
-  position: absolute;
-  margin: auto;
-  top:  5px;
-  right: initial;
-  bottom: initial;
-  left: -30px;
-  width:  10px;
-  height:  10px;
-  color: lightblue;
-  z-index:  5;
-  opacity:  1;
-  transition: left  2s;
-}
-
-.form-container span.arrow:hover {
+button {
+  background-color: transparent;
+  padding:  0;
+  border:  0;
+  outline:  0;
   cursor: pointer;
 }
 
-.form-container img {
-  position: absolute;
-  top: initial;
-  right: initial;
-  bottom: initial;
-  left: initial;
+input {
+  background-color: transparent;
+  padding:  0;
+  border:  0;
+  outline:  0;
+}
+
+input[type="submit"] {
+  cursor: pointer;
+}
+
+input::placeholder {
+  font-size:  0.85rem;
+  font-family: var(--ff);
+  font-weight: var(--ff-light);
+  letter-spacing:  0.1rem;
+  color: var(--gray);
+}
+
+/* Keyframes */
+@keyframes bounceLeft {
+   0% {
+    transform: translate3d(100%, -50%,  0);
+  }
+   50% {
+    transform: translate3d(-30px, -50%,  0);
+  }
+   100% {
+    transform: translate3d(0, -50%,  0);
+  }
+}
+
+@keyframes bounceRight {
+   0% {
+    transform: translate3d(0, -50%,  0);
+  }
+   50% {
+    transform: translate3d(calc(100% +  30px), -50%,  0);
+  }
+   100% {
+    transform: translate3d(100%, -50%,  0);
+  }
+}
+
+@keyframes showSignUp {
+   100% {
+    opacity:  1;
+    visibility: visible;
+    transform: translate3d(0,  0,  0);
+  }
+}
+
+/* Page background */
+.user {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width:  100%;
-  height:  100%;
-  object-fit: cover;
-  filter: grayscale(50%);
-  opacity:  0.2;
-  z-index: -1;
+  height:  100vh;
+  background-size: cover;
+  background-image:url('..//Assets/background.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+ 
 }
 
-.form-container .overlay {
-  position: absolute;
-  margin: auto;
-  top: initial;
-  right: initial;
-  bottom: initial;
-  left: initial;
-  width: inherit;
-  height: inherit;
-  background: rgba(214,  214,  214,  0.1);
-  z-index: -1;
-  transition: opacity  1s;
+.user_options-container {
+  position: relative;
+  width:  80%;
+  
 }
 
-.form-container .choose-form {
-  position: absolute;
-  margin: auto;
-  top: initial;
-  right: initial;
-  bottom: initial;
-  left: initial;
-  width: inherit;
-  height: inherit;
-  z-index:  4;
+.user_options-text {
+  display: flex;
+  justify-content: space-between;
+  width:  100%;
+  background-color: var(--smoky-black);
+  border-radius: var(--bdrds);
 }
 
-.form-container .choose-form .logo {
-  position: absolute;
-  margin: auto;
-  top: -100px;
-  right:  0;
-  bottom: initial;
-  left: initial;
-  width: inherit;
-  height:  100px;
-  text-align: center;
-  color: white;
-  transition: right  2s;
+/* Registered and Unregistered user box and text */
+.user_options-registered,
+.user_options-unregistered {
+  width:  50%;
+  padding:  75px  45px;
+  color: var(--white);
+  font-weight: var(--ff-light);
 }
 
-.form-container .choose-form .logo i {
-  font-size:  30px;
+.user_registered-title,
+.user_unregistered-title {
+  margin-bottom:  15px;
+  font-size:  1.66rem;
+  line-height:  1em;
 }
 
-.form-container .choose-form .logo h1 {
-  font-weight:  300;
+.user_unregistered-text,
+.user_registered-text {
+  font-size:  0.83rem;
+  line-height:  1.4em;
 }
 
-.form-container .choose-form .logo h1 span.bold {
-  font-weight:  600;
-}
-
-.form-container .choose-form .buttons {
-  text-align: center;
-  margin: auto;
-  top:  200px;
-  right:  0;
-  bottom: initial;
-  left:  0;
-  width: inherit;
-  height:  100px;
-}
-
-.form-container .choose-form .buttons a {
-  text-align: inherit;
+.user_registered-login,
+.user_unregistered-signup {
+  margin-top:  30px;
+  border:  1px solid var(--gray);
+  border-radius: var(--bdrds);
+  padding:  10px  30px;
+  color: var(--white);
   text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing:  0.1em;
-  font-size:  12px;
-  font-weight:  500;
-  color: white;
+  line-height:  1em;
+  letter-spacing:  0.2rem;
+  transition: background-color  0.2s ease-in-out, color  0.2s ease-in-out;
 }
 
-.form-container .choose-form .buttons a:hover {
-  background: white;
-  color: lightblue;
-  border:  1px solid lightblue;
+.user_registered-login:hover,
+.user_unregistered-signup:hover {
+  color: var(--smoky-black);
+  background-color: var(--gray);
 }
 
-.form-container .choose-form .buttons .button-login {
+/* Login and signup forms */
+.user_options-forms {
   position: absolute;
-  margin: auto;
-  top:  40px;
-  right:  0;
-  bottom: initial;
-  left:  0;
-  width:  200px;
-  height:  30px;
-  transition: right  2s;
-  transition-delay: .8s;
+  top:  50%;
+  left:  30px;
+  width: calc(50% -  30px);
+  min-height:  420px;
+  background-color: var(--white);
+  border-radius: var(--bdrds);
+  box-shadow:  2px  0  15px rgba(var(--black),  0.25);
+  overflow: hidden;
+  transform: translate3d(100%, -50%,  0);
+  transition: transform  0.4s ease-in-out;
 }
 
-.form-container .choose-form .buttons .button-signup {
-  position: absolute;
-  margin: auto;
-  top: -40px;
-  right:  0;
-  bottom: initial;
-  left:  0;
-  width:  200px;
-  height:  30px;
-  transition: right  2s;
-  transition-delay: .5s;
+.user_options-forms .user_forms-login {
+  transition: opacity  0.4s ease-in-out, visibility  0.4s ease-in-out;
 }
 
-.form-container .login-form {
-  opacity:  0;
-  transition: opacity  2s;
-}
-
-.form-container .register-form {
-  opacity:  0;
-  transition: opacity  2s;
-}
-
-.form-container .form {
-  position: absolute;
-  margin: auto;
-  top:  0;
-  right:  0;
-  bottom:  0;
-  left:  0;
-  width: inherit;
-  height:  400px;
-  text-align: center;
-}
-
-.form-container .form .form-wrapper {
-  width:  250px;
-  height:  200px;
-  margin:  0 auto;
-  display: block;
-}
-
-.form-container .form .form-wrapper label {
-  display: block;
-  text-align: left;
+.forms_title {
+  margin-bottom:  45px;
+  font-size:  1.5rem;
+  font-weight: var(--ff-medium);
+  line-height:  1em;
   text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing:  0.1em;
-  font-size:  12px;
-  font-weight:  600;
-  color: lightblue;
+  color: var(--salmon);
+  letter-spacing:  0.1rem;
 }
 
-.form-container .form .form-wrapper input {
-  width:  250px;
-  height:  30px;
-  margin:  5px  0  10px  0;
-  outline: none;
-  border: none;
-  background: none;
-  border-bottom:  1px solid lightblue;
-  font-size:  12px;
-  color: lightblue;
+.forms_field:not(:last-of-type) {
+  margin-bottom:  20px;
 }
 
-.form-container .form .form-wrapper input::placeholder {
-  color: rgba(19,  28,  36,  0.5);
-  opacity:  1;
+.forms_field-input {
+  width:  100%;
+  border-bottom:   1px solid var(--gray);
+  padding:   6px   20px   6px   6px;
+  font-family: var(--ff);
+  font-size:   1rem;
+  font-weight: var(--ff-light);
+  color: darken(var(--gray),   30%);
+  letter-spacing:   0.1rem;
+  transition: border-color   0.2s ease-in-out;
 }
 
-.form-container .form .form-wrapper a.forgot-password {
-  display: block;
-  text-align: right;
+.forms_field-input:focus {
+  border-color: darken(var(--gray),   30%);
+}
+
+.forms_buttons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top:   35px;
+}
+
+.forms_buttons-forgot {
+  font-family: var(--ff);
+  letter-spacing:   0.1rem;
+  color: var(--gray);
+  text-decoration: underline;
+  transition: color   0.2s ease-in-out;
+}
+
+.forms_buttons-forgot:hover {
+  color: darken(var(--gray),   10%);
+}
+
+.forms_buttons-action {
+  background-color: var(--salmon);
+  border-radius: var(--bdrds);
+  padding:   10px   35px;
+  font-size:   1rem;
+  font-family: var(--ff);
+  font-weight: var(--ff-light);
+  color: var(--white);
   text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing:  0.1em;
-  font-size:  12px;
-  font-weight:  500;
-  color: lightblue;
+  letter-spacing:   0.1rem;
+  transition: background-color   0.2s ease-in-out;
 }
 
-.form-container .form .form-wrapper a.forgot-password:hover {
-  opacity:  0.5;
+.forms_buttons-action:hover {
+  background-color: darken(var(--salmon),   10%);
 }
 
-.form-container .form .form-wrapper button.button-submit {
-  text-align: center;
-  text-transform: uppercase;
-  text-decoration: none;
-  letter-spacing:  0.1em;
-  font-size:  12px;
-  font-weight:  500;
-  color: white;
-  background: none;
-  outline: none;
-}
-
-.form-container .form .form-wrapper button.button-submit:hover {
-  background: white;
-  color: lightblue;
-  border:  1px solid lightblue;
-  cursor: pointer;
-}
-
-.form-container .form .form-wrapper .social-media {
+.user_forms-signup,
+.user_forms-login {
   position: absolute;
-  margin: auto;
-  top: initial;
-  right:  0;
-  bottom: initial;
-  left:  0;
-  width: inherit;
-  height: initial;
+  top:   70px;
+  left:   40px;
+  width: calc(100% -   80px);
+  opacity:   0;
+  visibility: hidden;
+  transition: opacity   0.4s ease-in-out, visibility   0.4s ease-in-out, transform   0.5s ease-in-out;
 }
 
-.form-container .form .form-wrapper .social-media h6 {
-  text-transform: uppercase;
-  color: lightblue;
+.user_forms-signup {
+  transform: translate3d(120px,   0,   0);
 }
 
-.form-container .form .form-wrapper .social-media h6::before {
-  content: "";
-  position: absolute;
-  margin: auto;
-  top:  6px;
-  right: initial;
-  bottom:  0;
-  left:  0;
-  width:  65px;
-  height: initial;
-  border-top:  1px solid lightblue;
+.user_forms-signup .forms_buttons {
+  justify-content: flex-end;
 }
 
-.form-container .form .form-wrapper .social-media h6::after {
-  content: "";
-  position: absolute;
-  margin: auto;
-  top:  6px;
-  right:  0;
-  bottom: initial;
-  left: initial;
-  width:  65px;
-  height: initial;
-  border-top:  1px solid lightblue;
+.user_forms-login {
+  transform: translate3d(0,   0,   0);
+  opacity:   1;
+  visibility: visible;
 }
 
-.form-container .form .form-wrapper .social-media .button-facebook {
-  border: none;
-  background: rgb(59,  89,  152);
-  text-align: center;
-  text-transform: initial;
-  text-decoration: none;
-  letter-spacing: initial;
-  font-size:  12px;
-  font-weight:  600;
-  color: white;
-  opacity:  0.8;
+/* Triggers */
+.user_options-forms.bounceLeft {
+  animation: bounceLeft   1s forwards;
 }
 
-.form-container .form .form-wrapper .social-media .button-facebook:hover {
-  opacity:  1;
+.user_options-forms.bounceLeft .user_forms-signup {
+  animation: showSignUp   1s forwards;
 }
 
-.form-container .form .form-wrapper .social-media .button-google {
-  border: none;
-  background: rgb(219,  50,  54);
-  text-align: center;
-  text-transform: initial;
-  text-decoration: none;
-  letter-spacing: initial;
-  font-size:  12px;
-  font-weight:  600;
-  color: white;
-  opacity:  0.8;
+.user_options-forms.bounceLeft .user_forms-login {
+  opacity:   0;
+  visibility: hidden;
+  transform: translate3d(-120px,   0,   0);
 }
 
-.form-container .form .form-wrapper .social-media .button-google:hover {
-  opacity:  1;
+.user_options-forms.bounceRight {
+  animation: bounceRight   1s forwards;
 }
 
-.button {
-  margin:  10px auto;
-  padding:  7px  0;
-  border-radius:  10px;
-  border:  1px solid white;
-  width:  200px;
-  height:  30px;
-  display: block;
-  outline: none;
+/* Responsive  990px */
+@media screen and (max-width:   990px) {
+  .user_options-forms {
+    min-height:   350px;
+  }
+
+  .forms_buttons {
+    flex-direction: column;
+  }
+
+  .user_forms-login .forms_buttons-action {
+    margin-top:   30px;
+  }
+
+  .user_forms-signup,
+  .user_forms-login {
+    top:   40px;
+  }
+
+  .user_options-registered,
+  .user_options-unregistered {
+    padding:   50px   45px;
+  }
 }
