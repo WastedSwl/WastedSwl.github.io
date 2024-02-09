@@ -19,8 +19,10 @@
                 <li><a href="#">Q&A</a></li>
                 <li class="Cards"><a href="#">Cards</a></li>
                 <li class="teachers"><a href="#">Teachers</a></li>
-                <li><a href="#"><a href="..//client/loginregister.html">Log in</a></li>
-                <li><a href="#">Sign up</a></li>
+                <li><a href="#"><a href="../client/loginregister.html">Sign up</a></li>
+                <li id="signOutLi" style="display: none;">
+                    <a href="#" id="signOutLink">Sign Out</a>
+                  </li>
             </ul>
         </nav>
         
@@ -28,7 +30,7 @@
     <div class="welcome ">
         <h1 class="welcometext">Welcome to <p>The Language Business Channel</h1>
     </div>
-    <button class="get-started">Get Started</button>
+    <button class="get-started"><a href="..//gap/gap.html">Get Started</a></button>
     </div>
 
     <div class="language-selection">
@@ -88,6 +90,25 @@
             </div>
         </div>
     </footer>
+    <script src="../client/localstorage.js"></script>
+    <script>
+ window.addEventListener('DOMContentLoaded', () => {
+  const signUpButton = document.querySelector('.navbar-menu li a[href="../client/loginregister.html"]');
+  const userEmailElement = document.createElement('span');
+  userEmailElement.className = 'user-email';
+
+  const userData = getUserDataFromLocalStorage();
+  if (userData) {
+    // Скрываем кнопку "Sign up"
+    signUpButton.parentNode.style.display = 'none';
+    // Отображаем email пользователя
+    userEmailElement.textContent = userData.email;
+    signUpButton.parentNode.appendChild(userEmailElement);
+  } else {
+    // Кнопка "Sign up" остается видимой
+  }
+});
+    </script>
 </body>
 
 <script src ="cources.js"></script>
