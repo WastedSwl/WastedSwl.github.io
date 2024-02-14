@@ -5,33 +5,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="landing.css">
-    <link rel="stylesheet" href="..//landingpage/landing.html">
-   
 </head>
 <body>
-        <nav>
-          <ul>
-            <li>Courses</a></li>
-            <li>Teachers</li>
-            <li>Q&A</li>
-            <li>Subcrtiption</li>
-            <li>Contact me</li>
-            <li class="slide"></li>
-          </ul>
-        </nav>
+
+        <div class="main-container">
+    <a class="main-tab" href="#content">About us</a>
+    <a class="main-tab" href="#tab-svelte">Cources</a>
+    <a class="main-tab" href="#teachers">Teachers</a>
+    <a class="main-tab" href="#tab-next">Q&A</a>
+    <a class="main-tab" href="#tab-vite">Login</a>
+</div>
         <section class="main">
-          <video autoplay loop muted playsinline id="backgroundVideo">
-            <source src="https://www.youtube.com/watch?v=KJwYBJMSbPI&ab_channel=RelaxationFilm" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-          <div class="title">
-            <span>Welcome to </span>
-            <span>Language Business Channel</span></div>
-          <img class="logo" src="..//Assets/logo.svg">
+          <img src="..//Assets/logo.svg" class="logo"></img>
+          <sectio class="nav">
+            <h1>Welcome to</h1>
+            <h3 class="span loader">
+              <span class="m">B</span>
+              <span class="m">U</span>
+              <span class="m">S</span>
+              <span class="m">I</span>
+              <span class="m">N</span>
+              <span class="m">E</span>
+              <span class="m">S</span>
+              <span class="m">S</span>
+              <span class="m">&nbsp;</span>
+              <span class="m">L</span>
+              <span class="m">A</span>
+              <span class="m">N</span>
+              <span class="m">G</span>
+              <span class="m">U</span>
+              <span class="m">A</span>
+              <span class="m">G</span>
+              <span class="m">E</span>
+              <span class="m">&nbsp;</span>
+              <span class="m"></span>
+              <span class="m">C</span>
+              <span class="m">H</span>
+              <span class="m">A</span>
+              <span class="m">N</span>
+              <span class="m">N</span>
+              <span class="m">E</span>
+              <span class="m">L</span>
+            </h3>
+          </sectio>
+
         </section>
-        <iframe src="..//content/content.html"></iframe>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="landing.js"></script>
-      
+        <section class="content" id="content">
+          <iframe src="..//content/content.html"></iframe>
+          </section>
+      <!--  <section class="carousel">
+          <iframe src="..//logo carousel/carousel.html"></iframe>
+        </section>-->
+       <section class="teachers" id="teachers">
+          <iframe src="..//teachers/teachers.html" ></iframe>
+        </section>
+
+        <section class="feedback" id="feedback">
+          <iframe src="..//feedback/feedback.html" ></iframe>
+        </section>
 </body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+        
+<script src="landing.js"></script>
+
 </html>

@@ -1,53 +1,74 @@
-
-let typeSplit;
-function allTextSplit() {
-  typeSplit = new SplitType(".on-scroll_heading, .on-scroll_details", {
-    types: "lines"
+// Importing utility function for preloading images
+const preloadImages = (selector = 'img') => {
+  return new Promise((resolve) => {
+      // The imagesLoaded library is used to ensure all images (including backgrounds) are fully loaded.
+      imagesLoaded(document.querySelectorAll(selector), {background: true}, resolve);
   });
-  $(".line").append("<div class='line-mask'></div>");
-  createAnimation();
-}
-allTextSplit();
+};
+// Exporting utility functions for use in other modules.
+window.preloadImages = preloadImages;
+// Variable to store the Lenis smooth scrolling object
+let lenis;
 
-// Update text split on screen size resize
-let windowWidth = $(window).innerWidth();
-window.addEventListener("resize", function () {
-  if (windowWidth !== $(window).innerWidth()) {
-    windowWidth = $(window).innerWidth();
-    typeSplit.revert();
-    allTextSplit();
-  }
+// Selecting DOM elements
+
+const contentElements = [...document.querySelectorAll('.content--sticky')];
+const totalContentElements = contentElements.length;
+
+// Initializes Lenis for smooth scrolling with specific properties
+const initSmoothScrolling = () => {
+// Instantiate the Lenis object with specified properties
+lenis = new Lenis({
+  lerp: 0.2, // Lower values create a smoother scroll effect
+  smoothWheel: true // Enables smooth scrolling for mouse wheel events
 });
 
-// All GSAP code starts
-gsap.registerPlugin(ScrollTrigger);
+// Update ScrollTrigger each time the user scrolls
+lenis.on('scroll', () => ScrollTrigger.update());
 
-function createAnimation() {
-  $(".on-scroll_content-wrapper").each(function (index) {
-    let onScrollTextLineAnm = gsap.timeline({
-      scrollTrigger: {
-        trigger: $(this),
-        start: "top 90%",
-        toggleActions: "play none none reverse",
-        markers: true
-      }
-    });
-    onScrollTextLineAnm
-      .fromTo(
-        $(this),
-        {
-          opacity: 0
-        },
-        {
-          opacity: 1,
-          duration: 0.3,
-          ease: "power2.in"
-        }
-      )
-      .to($(this).find(".line-mask"), {
-        width: "0%",
-        duration: 1,
-        stagger: { each: 0.08, from: "start" }
-      });
+// Define a function to run at each animation frame
+const scrollFn = (time) => {
+  lenis.raf(time); // Run Lenis' requestAnimationFrame method
+  requestAnimationFrame(scrollFn); // Recursively call scrollFn on each frame
+};
+// Start the animation frame loop
+requestAnimationFrame(scrollFn);
+};
+
+// Function to handle scroll-triggered animations
+const scroll = () => {
+
+  contentElements.forEach((el, position) => {
+      
+      const isLast = position === totalContentElements-1;
+
+      gsap.timeline({
+          scrollTrigger: {
+              trigger: el,
+              start: 'top top',
+              end: '+=100%',
+              scrub: true
+          }
+      })
+      .to(el, {
+          ease: 'none',
+          startAt: {filter: 'brightness(100%) contrast(100%)'},
+          filter: isLast ? 'none' : 'brightness(60%) contrast(135%)',
+          yPercent: isLast ? 0 : -15
+      }, 0)
+      // Animate the content inner image
+      .to(el.querySelector('.content__img'), {
+          ease: 'power1.in',
+          yPercent: -40,
+          rotation: -20
+      }, 0);
+
   });
-}
+
+};
+
+// Initialization function
+const init = () => {
+  initSmoothScrolling(); // Initialize Lenis for smooth scrolling
+  scroll(); // Apply scroll-triggered animations
+};
