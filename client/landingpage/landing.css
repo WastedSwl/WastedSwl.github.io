@@ -15,14 +15,18 @@ a {
   }
   .main{
     background-image: url(..//Assets//background.svg);
+    cursor:auto;
 }
 
   .logo {
+    position: absolute;
     filter: invert(1);
     height: 20%;
     width: 20%;
    margin-bottom: 20px;
-   top:0
+   margin-left: 10px;
+   top:0;
+   left:0;
 }
 
   section{
