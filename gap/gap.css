@@ -1,82 +1,90 @@
 body {
-    font-style:oblique;
-    font-family: 'Courier New', monospace; /* Добавляем строгий и рукописный шрифт */
-    background-color: #484646;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .container {
-    background: linear-gradient(to right, #f4f3f3, #a5a2a2);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(5, 8, 4, 0.1);
-    transition: background 1s ease; /* Добавляем анимацию для цвета карточки */
-  }
-  
-  h1 {
-    color: #333;
-    text-align: center;
-  }
-  
-  #germanSentenceContainer {
-    margin-bottom: 50px;
-  }
-  
-  #userAnswer {
-    width: 10px;
-    margin: 10px;
-    border:none;
-    font-size: 16px;
-    color: #333;
-    transition: background-color 0.5s ease; /* Добавляем анимацию для цвета поля ввода */
-  }
-  
-  #germanSentenceContainer span {
-    margin-right: 2px;
-    font-size: 16px;
-    color: #333;
-    transition: color 0.5s ease; /* Добавляем анимацию для цвета текста */
-  }
+  font-style: oblique;
+  font-family: "Courier New", monospace; /* Добавляем строгий и рукописный шрифт */
+  background-color: #484646;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
 
-  #englishSentenceContainer {
-    margin-top: 10px;
-    font-size: 20px;
-    color: #555;
-    transition: color 0.5s ease; /* Добавляем анимацию для цвета текста */
-  }
-  
-  #score {
-    margin-top: 10px;
-    font-size: 18px;
-    color: #333;
-    text-align: center;
-    transition: color 0.5s ease; /* Добавляем анимацию для цвета текста */
-  }
-  
-  #submit-translation {
-    background-color: #4caf50;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  #submit-translation:hover {
-    background-color: #234a25;
-  }
-  .container.correct {
-    background: #4caf50; /* Зеленый фон для контейнера при правильном ответе */
-  }
-  
-  .container.incorrect {
-    background: #e57373; /* Красный фон для контейнера при неправильном ответе */
-  }
+.container {
+  background: linear-gradient(to right, #f4f3f3, #a5a2a2);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(5, 8, 4, 0.1);
+  transition: background 1s ease; /* Добавляем анимацию для цвета карточки */
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+}
+
+#germanSentenceContainer {
+  margin-bottom: 50px;
+}
+
+#userAnswer {
+  width: 10px;
+  margin: 10px;
+  border: none;
+  font-size: 16px;
+  color: #333;
+  transition: background-color 0.5s ease; /* Добавляем анимацию для цвета поля ввода */
+}
+
+#germanSentenceContainer span {
+  margin-right: 2px;
+  font-size: 16px;
+  color: #333;
+  transition: color 0.5s ease; /* Добавляем анимацию для цвета текста */
+}
+
+#englishSentenceContainer {
+  margin-top: 10px;
+  font-size: 20px;
+  color: #555;
+  transition: color 0.5s ease; /* Добавляем анимацию для цвета текста */
+}
+
+#score {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+  transition: color 0.5s ease; /* Добавляем анимацию для цвета текста */
+}
+
+#submit-translation {
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+#submit-translation:hover {
+  background-color: #234a25;
+}
+.container.correct {
+  background: #4caf50; /* Зеленый фон для контейнера при правильном ответе */
+}
+
+.container.incorrect {
+  background: #e57373; /* Красный фон для контейнера при неправильном ответе */
+}
+
+.input-letter {
+  width: 1.5em;
+  height: 1.5em;
+  text-align: center;
+  font-size: 1em;
+  margin: 0 2px;
+}

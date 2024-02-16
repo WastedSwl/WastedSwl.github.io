@@ -8,6 +8,7 @@ function getRandomSentenceFromServer() {
     .then((data) => {
       displayedSentences = [data];
       initialTotalQuestions = data.totalQuestions;
+      console.log(displayedSentences[0].missingWord.toLowerCase());
       if (displayedSentences.length > 0) {
         displayCurrentSentence();
       } else {
@@ -20,64 +21,126 @@ function getRandomSentenceFromServer() {
     });
 }
 
-getRandomSentenceFromServer();
+document.addEventListener("DOMContentLoaded", function () {
+  getRandomSentenceFromServer();
+});
 
 function displayCurrentSentence() {
-  const germanSentenceContainer = document.getElementById("germanSentenceContainer");
-  const englishSentenceContainer = document.getElementById("englishSentenceContainer");
+  const germanSentenceContainer = document.getElementById(
+    "germanSentenceContainer"
+  );
+  const englishSentenceContainer = document.getElementById(
+    "englishSentenceContainer"
+  );
   const currentSentence = displayedSentences[0];
   const words = currentSentence.sentence.split(" ");
-  const blankIndex = words.indexOf("_");
 
   germanSentenceContainer.innerHTML = "";
   words.forEach((word, index) => {
-    if (index === blankIndex) {
-      const underscoreElement = document.createElement("span");
-      underscoreElement.innerHTML = "_".repeat(currentSentence.missingWord.length).split('').join('&nbsp;') + " ";
-      germanSentenceContainer.appendChild(underscoreElement);
+    if (word === "_") {
+      const inputElement = document.createElement("input");
+      inputElement.type = "text";
+      inputElement.maxLength = "1";
+      inputElement.className = "input-letter";
+      inputElement.addEventListener("input", handleInput);
+      germanSentenceContainer.append(inputElement);
     } else {
       const spanElement = document.createElement("span");
       spanElement.textContent = word + " ";
-      if (index === blankIndex - 1 || index === blankIndex + 1) {
-        spanElement.style.marginRight = "2px";
-      }
-      germanSentenceContainer.appendChild(spanElement);
+      germanSentenceContainer.append(spanElement);
     }
   });
 
   englishSentenceContainer.textContent = currentSentence.translation;
+
+  const firstInput = germanSentenceContainer.querySelector(".input-letter");
+  if (firstInput) {
+    firstInput.focus();
+  }
+}
+
+document.addEventListener("keydown", function (event) {
+  const activeElement = document.activeElement;
+  if (event.key === "Enter") {
+    event.preventDefault();
+    checkAnswer();
+  }
+  if (event.key === "ArrowLeft" || event.key === "ArrowRight") {
+    event.preventDefault();
+    const sibling =
+      event.key === "ArrowLeft"
+        ? activeElement.previousElementSibling
+        : activeElement.nextElementSibling;
+    if (sibling && sibling.tagName === "INPUT") {
+      sibling.focus();
+    }
+  } else if (event.key === "Backspace" && event.target.value === "") {
+    event.preventDefault();
+    const sibling =
+      event.key === "Backspace"
+        ? activeElement.previousElementSibling
+        : activeElement.nextElementSibling;
+    if (sibling && sibling.tagName === "INPUT") {
+      sibling.focus();
+      sibling.value = "";
+    }
+  }
+});
+
+function handleInput(event) {
+  const inputElement = event.target;
+  if (inputElement.value.length === 1) {
+    const nextInput = inputElement.nextElementSibling;
+    if (nextInput && nextInput.tagName === "INPUT") {
+      nextInput.focus();
+    }
+  }
 }
 
 document.getElementById("answerForm").addEventListener("submit", checkAnswer);
 
+function collectInputValues() {
+  const inputs = document.querySelectorAll(".input-letter");
+  let answer = "";
+  inputs.forEach((input) => {
+    answer += input.value;
+  });
+  return answer;
+}
+
 function checkAnswer(event) {
-  event.preventDefault();
-  const userAnswer = document.getElementById("userAnswer").value;
+  if (event) {
+    event.preventDefault();
+  }
+  const userAnswer = collectInputValues();
   if (!userAnswer) {
     return;
   }
-  const container = document.querySelector('.container');
-  if (userAnswer.toLowerCase() === displayedSentences[0].missingWord.toLowerCase()) {
+  const container = document.querySelector(".container");
+  if (
+    userAnswer.toLowerCase() === displayedSentences[0].missingWord.toLowerCase()
+  ) {
     score++;
     updateScoreCounter(score);
-    container.classList.add('correct');
+    container.classList.add("correct");
     setTimeout(() => {
-      container.classList.remove('correct');
+      container.classList.remove("correct");
       getRandomSentenceFromServer();
     }, 2000);
   } else {
-    container.classList.add('incorrect');
+    container.classList.add("incorrect");
     setTimeout(() => {
-      container.classList.remove('incorrect');
+      container.classList.remove("incorrect");
       showToast("Попробуйте еще раз!", "warning");
     }, 2000);
   }
-  document.getElementById("userAnswer").value = "";
 }
 
 function updateScoreCounter(score) {
   let answeredQuestions = score + 1;
-  document.getElementById("score").innerText = `${answeredQuestions}/${initialTotalQuestions}`;
+  document.getElementById(
+    "score"
+  ).innerText = `${answeredQuestions}/${initialTotalQuestions}`;
 }
 
 function showToast(message, type) {
