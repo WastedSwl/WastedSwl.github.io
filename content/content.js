@@ -1,74 +1,90 @@
-// Importing utility function for preloading images
-const preloadImages = (selector = 'img') => {
-  return new Promise((resolve) => {
-      // The imagesLoaded library is used to ensure all images (including backgrounds) are fully loaded.
-      imagesLoaded(document.querySelectorAll(selector), {background: true}, resolve);
-  });
-};
-// Exporting utility functions for use in other modules.
-window.preloadImages = preloadImages;
-// Variable to store the Lenis smooth scrolling object
-let lenis;
+// Tutorial: https://youtu.be/Wxnpze5LK3Y
 
-// Selecting DOM elements
+var sliderCounter = 0;
+var sliderContent = [
+  "Learning Languages",
+  "Understand Languages",
+  "Speaking Languagest",
+];
+var slider = document.querySelector("#slider");
+var sliderValue = document.querySelector("#sliderValue");
 
-const contentElements = [...document.querySelectorAll('.content--sticky')];
-const totalContentElements = contentElements.length;
 
-// Initializes Lenis for smooth scrolling with specific properties
-const initSmoothScrolling = () => {
-// Instantiate the Lenis object with specified properties
-lenis = new Lenis({
-  lerp: 0.2, // Lower values create a smoother scroll effect
-  smoothWheel: true // Enables smooth scrolling for mouse wheel events
+function slide() {
+  if (sliderCounter >= sliderContent.length) {
+    sliderCounter = 0;
+  }
+
+  sliderValue.innerHTML = "";
+  
+  sliderValue.classList.remove("holder-animation");
+  void sliderValue.offsetWidth;
+  sliderValue.classList.add("holder-animation");
+  
+  for (i = 0; i < sliderContent[sliderCounter].length; i++) {
+    let letterDiv = document.createElement("div");
+    letterDiv.innerHTML = sliderContent[sliderCounter][i];
+
+    if (letterDiv.innerHTML == " ") {
+      letterDiv.innerHTML = "&nbsp;";
+    }
+    letterDiv.classList.add("start");
+    letterDiv.classList.add("animation");
+    letterDiv.style.animationDelay = i / 10 + "s";
+    sliderValue.appendChild(letterDiv);
+  }
+
+  sliderCounter++;
+}
+
+slide();
+setInterval(slide, 4000);
+const swiper = new Swiper(".swiper", {
+  direction: "horizontal",
+  loop: false,
+  speed: 1500,
+  slidesPerView: 4,
+  spaceBetween: 60,
+  mousewheel: true,
+  parallax: true,
+  centeredSlides: true,
+  effect: "coverflow",
+  coverflowEffect: {
+    rotate: 40,
+    slideShadows: true
+  },
+  autoplay: {
+    delay: 2000,
+    pauseOnMouseEnter: true
+  },
+  scrollbar: {
+    el: ".swiper-scrollbar"
+  },
+  breakpoints: {
+    0: {
+      slidesPerView: 1,
+      spaceBetween: 60
+    },
+    600: {
+      slidesPerView: 2,
+      spaceBetween: 60
+    },
+    1000: {
+      slidesPerView: 3,
+      spaceBetween: 60
+    },
+    1400: {
+      slidesPerView: 4,
+      spaceBetween: 60
+    },
+    2300: {
+      slidesPerView: 5,
+      spaceBetween: 60
+    },
+    2900: {
+      slidesPerView: 6,
+      spaceBetween: 60
+    }
+  }
 });
 
-// Update ScrollTrigger each time the user scrolls
-lenis.on('scroll', () => ScrollTrigger.update());
-
-// Define a function to run at each animation frame
-const scrollFn = (time) => {
-  lenis.raf(time); // Run Lenis' requestAnimationFrame method
-  requestAnimationFrame(scrollFn); // Recursively call scrollFn on each frame
-};
-// Start the animation frame loop
-requestAnimationFrame(scrollFn);
-};
-
-// Function to handle scroll-triggered animations
-const scroll = () => {
-
-  contentElements.forEach((el, position) => {
-      
-      const isLast = position === totalContentElements-1;
-
-      gsap.timeline({
-          scrollTrigger: {
-              trigger: el,
-              start: 'top top',
-              end: '+=100%',
-              scrub: true
-          }
-      })
-      .to(el, {
-          ease: 'none',
-          startAt: {filter: 'brightness(100%) contrast(100%)'},
-          filter: isLast ? 'none' : 'brightness(60%) contrast(135%)',
-          yPercent: isLast ? 0 : -15
-      }, 0)
-      // Animate the content inner image
-      .to(el.querySelector('.content__img'), {
-          ease: 'power1.in',
-          yPercent: -40,
-          rotation: -20
-      }, 0);
-
-  });
-
-};
-
-// Initialization function
-const init = () => {
-  initSmoothScrolling(); // Initialize Lenis for smooth scrolling
-  scroll(); // Apply scroll-triggered animations
-};
