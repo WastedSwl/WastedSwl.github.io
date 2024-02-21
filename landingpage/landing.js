@@ -1,9 +1,12 @@
+
+
 /* Credit and Thanks:
 Matrix - Particles.js;
 SliderJS - Ettrics;
 Design - Sara Mazal Web;
 Fonts - Google Fonts
 */
+
 
 class NavigationPage {
   constructor() {
@@ -25,19 +28,9 @@ class NavigationPage {
 
   onTabClick(event, element) {
     event.preventDefault();
-    let href = element.attr("href");
-    if (href.startsWith("/")) {
-      // Если href начинается с '/', то это ссылка на другой ресурс,
-      // и мы не должны пытаться прокрутить страницу к этому элементу.
-      // Вместо этого, просто перенаправляем пользователя на новую страницу.
-      window.location.href = href;
-    } else {
-      let target = $(href);
-      if (target.length) {
-        let scrollTop = target.offset().top - this.tabContainerHeight + 1;
-        $("html, body").animate({ scrollTop: scrollTop }, 600);
-      }
-    }
+    let scrollTop =
+      $(element.attr("href")).offset().top - this.tabContainerHeight + 1;
+    $("html, body").animate({ scrollTop: scrollTop }, 600);
   }
 
   onScroll() {
@@ -85,14 +78,14 @@ class NavigationPage {
     }
   }
 
-  findCurrentTabSelector() {
+  ffindCurrentTabSelector() {
     let newCurrentId;
     let newCurrentTab;
     let self = this;
     $(".main-tab").each(function () {
       let id = $(this).attr("href");
       // Check if the element exists before accessing its properties
-      if (id.startsWith("#") && $(id).length) {
+      if ($(id).length) {
         let offsetTop = $(id).offset().top - self.tabContainerHeight;
         let offsetBottom =
           $(id).offset().top + $(id).height() - self.tabContainerHeight;
