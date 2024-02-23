@@ -1,0 +1,10 @@
+[
+    {
+        "sentence": "I _ sad",
+        "missingWord": "am"
+    },
+    {
+        "sentence": "She _ happy",
+        "missingWord": "is"
+    }
+]
