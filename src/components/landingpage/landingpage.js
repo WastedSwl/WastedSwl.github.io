@@ -9,21 +9,13 @@ const NavigationPage = () => {
   let currentTab = null;
   let lastScroll = 0;
 
-  const onTabClick = (event, element) => {
+  const onTabClick = (event, targetPath) => {
     event.preventDefault();
-    const href = element.attr('href');
-    navigate(href);
-    scrollToSection(href);
+    navigate(targetPath);
   };
-  
+
   const navigate = useNavigate();
-  
-  const scrollToSection = (sectionId) => {
-    const element = document.querySelector(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+
   const onScroll = () => {
     checkHeaderPosition();
     findCurrentTabSelector();
@@ -74,15 +66,15 @@ const NavigationPage = () => {
   const findCurrentTabSelector = () => {
     let newCurrentId = null;
     let newCurrentTab = null;
-
+  
     $(".main-tab").each(function () {
-      const id = $(this).attr("href");
-
-      if ($(id).length) {
-        const offsetTop = $(id).offset().top - tabContainerHeight;
+      const id = $(this).attr("to");
+  
+      if ($(`[to="${id}"]`).length) {
+        const offsetTop = $(`[to="${id}"]`).offset().top - tabContainerHeight;
         const offsetBottom =
-          $(id).offset().top + $(id).height() - tabContainerHeight;
-
+          $(`[to="${id}"]`).offset().top + $(`[to="${id}"]`).height() - tabContainerHeight;
+  
         if (
           $(window).scrollTop() > offsetTop &&
           $(window).scrollTop() < offsetBottom
@@ -92,7 +84,7 @@ const NavigationPage = () => {
         }
       }
     });
-
+  
     if (currentId !== newCurrentId || currentId === null) {
       currentId = newCurrentId;
       currentTab = newCurrentTab;
@@ -113,26 +105,21 @@ const NavigationPage = () => {
     $(".main-tab-slider").css("left", left);
   };
 
-  useEffect(() => {
-    $(".main-tab").click((event) => onTabClick(event, $(event.currentTarget)));
-    $(window).scroll(onScroll);
-    $(window).resize(onResize);
-  }, []);
+
 
   return (
-    
     <>
-    <div className="main-container">
-        <Link to="/app" className="main-tab" onClick={(e) => onTabClick(e, "#about")}>
+      <div className="main-container">
+        <Link to="/about" className="main-tab">
           About us
         </Link>
-        <Link to="/app" className="main-tab" onClick={(e) => onTabClick(e, "#courses")}>
+        <Link to="/courses" className="main-tab">
           Courses
         </Link>
-        <Link to="/app" className="main-tab" onClick={(e) => onTabClick(e, "#teachers")}>
+        <Link to="/teachers" className="main-tab">
           Teachers
         </Link>
-        <Link to="/app" className="main-tab" onClick={(e) => onTabClick(e, "#qa")}>
+        <Link to="/qa" className="main-tab">
           Q&A
         </Link>
         <Link to="/app" className="main-tab">
